@@ -32,13 +32,25 @@ int main(int argc, char* argv[])
     in >> n;
     for (int i = 0; i < n; i++)
     {
-        int radius, heigth, width, depth = 0;
-        in >> radius >> heigth;
-        in >> width >> depth;
-        if (radius == 0)
-            if (heigth != 0)
+        int type, radius, heigth, width, depth = 0;
+        in >> type;
+        switch(type)
+        {
+            case Shape1::type::round:
             {
                 Shape1 tmp;
+                in >> radius;
+                tmp.key = Shape1::type::round;
+                tmp.mySphere.radius = radius;
+                myElement = addElement(tmp, array);
+                cout << "Element number " << i << ": ";
+                cout << tmp.mySphere.radius << ". That's a sphere.\n";
+                break;
+            }
+            case Shape1::type::square:
+            {
+                Shape1 tmp;
+                in >> heigth >> width >> depth;
                 tmp.key = Shape1::type::square;
                 tmp.myParallelepiped.heigth = heigth;
                 tmp.myParallelepiped.width = width;
@@ -48,8 +60,9 @@ int main(int argc, char* argv[])
                 cout << tmp.myParallelepiped.heigth << ", ";
                 cout << tmp.myParallelepiped.width << ", ";
                 cout << tmp.myParallelepiped.depth << ". That's a parallelepiped.\n";
+                break;
             }
-            else
+            case Shape1::type::empty:
             {
                 Shape1 tmp;
                 cout << "Element number " << i << " is empty\n";
@@ -58,21 +71,9 @@ int main(int argc, char* argv[])
                 tmp.myParallelepiped.width = 0;
                 tmp.myParallelepiped.depth = 0;
                 myElement = addElement(tmp, array);
+                break;
             }
-        else
-            if (heigth != 0)
-            {
-                cout << "Element number " << i << " is broken. It has both radius and heigth\n";
-            }
-            else
-            {
-                Shape1 tmp;
-                tmp.key = Shape1::type::round;
-                tmp.mySphere.radius = radius;
-                myElement = addElement(tmp, array);
-                cout << "Element number " << i << ": ";
-                cout << tmp.mySphere.radius << ". That's a sphere.\n";
-            }
+        }
     }
     int counter = 0;
     for (int i = 0; i < 30; i++)
@@ -106,5 +107,6 @@ int main(int argc, char* argv[])
             }
         }
     }
+    out << "Total number of objects: " << counter << "\n";
     return 0;
 }

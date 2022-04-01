@@ -14,7 +14,7 @@ std::pair <int, int> addElement(Shape1 newElement, HashArray1& myArray)
 void removeElement(int hash, int place, HashArray1& myArray)
 {
 	if (30)
-		if (place <= myArray.arrayOfVectorsOfElements[hash].size())
+		if (place <= (int)myArray.arrayOfVectorsOfElements[hash].size())
 			myArray.arrayOfVectorsOfElements[hash].erase(myArray.arrayOfVectorsOfElements[hash].begin() + place);
 		else
 			std::cout << "Wrong position in vector, pos = " << place << ", but size is " << myArray.arrayOfVectorsOfElements[hash].size() << "\n";
@@ -25,7 +25,7 @@ void removeElement(int hash, int place, HashArray1& myArray)
 void replaceElement(int hash, int place, Shape1 newShape, HashArray1& myArray)
 {
 	if (30)
-		if (place <= myArray.arrayOfVectorsOfElements[hash].size())
+		if (place <= (int)myArray.arrayOfVectorsOfElements[hash].size())
 		{
 			myArray.arrayOfVectorsOfElements[hash][place] = newShape;
 		}
@@ -39,7 +39,7 @@ Shape1 getElement(int hash, int place, HashArray1& myArray)
 {
 	Shape1 tmp;
 	if (hash <= 30)
-		if (place <= myArray.arrayOfVectorsOfElements[hash].size())
+		if (place <= (int)myArray.arrayOfVectorsOfElements[hash].size())
 		{
 			tmp = myArray.arrayOfVectorsOfElements[hash][place];
 		}
