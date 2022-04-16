@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     in >> n;
     for (int i = 0; i < n; i++)
     {
-        int type, radius, heigth, width, depth = 0;
+        int type, radius, heigth, width, depth, edge = 0;
         in >> type;
         switch(type)
         {
@@ -73,6 +73,17 @@ int main(int argc, char* argv[])
                 myElement = addElement(tmp, array);
                 break;
             }
+            case Shape1::type::tetra:
+            {
+                Shape1 tmp;
+                in >> edge;
+                tmp.key = Shape1::type::tetra;
+                tmp.myTetraedr.edge = edge;
+                myElement = addElement(tmp, array);
+                cout << "Element number " << i << ": ";
+                cout << tmp.myTetraedr.edge << ". That's a tetraedr.\n";
+                break;
+            }
         }
     }
     int counter = 0;
@@ -102,6 +113,12 @@ int main(int argc, char* argv[])
                 else if (tmp.key == Shape1::type::empty)
                 {
                     out << "Element number " << i << " is empty\n";
+                    counter++;
+                }
+                else if (tmp.key == Shape1::type::tetra)
+                {
+                    out << "Element number " << counter << " is a tetraedr with edges: ";
+                    out << tmp.myTetraedr.edge<< "\n";
                     counter++;
                 }
             }
