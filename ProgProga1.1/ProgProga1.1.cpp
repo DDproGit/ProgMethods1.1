@@ -44,7 +44,8 @@ int main(int argc, char* argv[])
                 tmp.mySphere.radius = radius;
                 myElement = addElement(tmp, array);
                 cout << "Element number " << i << ": ";
-                cout << tmp.mySphere.radius << ". That's a sphere.\n";
+                cout << tmp.mySphere.radius << ". That's a sphere.";
+                cout << tmp.mySphere.getVolume() << "\n";
                 break;
             }
             case Shape1::type::square:
@@ -59,7 +60,8 @@ int main(int argc, char* argv[])
                 cout << "Element number " << i << ": ";
                 cout << tmp.myParallelepiped.heigth << ", ";
                 cout << tmp.myParallelepiped.width << ", ";
-                cout << tmp.myParallelepiped.depth << ". That's a parallelepiped.\n";
+                cout << tmp.myParallelepiped.depth << ". That's a parallelepiped.";
+                cout << tmp.myParallelepiped.getVolume() << "\n";
                 break;
             }
             case Shape1::type::empty:

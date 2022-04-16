@@ -1,2 +1,6 @@
-﻿  ProgProga1.1.cpp
-  ProgProga1.1.vcxproj -> C:\Users\Nikita\source\repos\ProgProga1.1\Debug\ProgProga1.1.exe
+﻿  code.cpp
+C:\Users\Lenovo\Documents\GitHub\ProgMethods1.1\ProgProga1.1\code.h(15,42): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+  ProgProga1.1.cpp
+C:\Users\Lenovo\Documents\GitHub\ProgMethods1.1\ProgProga1.1\code.h(15,42): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+  ProgProga1.1.vcxproj -> C:\Users\Lenovo\Documents\GitHub\ProgMethods1.1\Debug\ProgProga1.1.exe
