@@ -9,18 +9,21 @@ struct Shape1
 	struct sphere
 	{
 		int radius;
+		int temperature;
 	};
 	struct parallelepiped
 	{
 		int heigth;
 		int width;
 		int depth;
+		int temperature;
 	};
 	union
 	{
 		sphere mySphere;
 		parallelepiped myParallelepiped;
 	};
+	Shape1();
 };
 
 
