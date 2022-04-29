@@ -75,38 +75,10 @@ int main(int argc, char* argv[])
             }
         }
     }
-    int counter = 0;
-    for (int i = 0; i < 30; i++)
-    {
-        Shape1 tmp;
-        if (getSizeOfVector(i, array) != 0)
-        {
-            int size = getSizeOfVector(i, array);
-            for (int j = 0; j < size; j++)
-            {
-                tmp = getElement(i, j, array);
-                if (tmp.key == Shape1::type::round)
-                {
-                    out << "Element number " << counter << " is a sphere with radius: ";
-                    out << tmp.mySphere.radius << "\n";
-                    counter++;
-                }
-                else if (tmp.key == Shape1::type::square)
-                    {
-                        out << "Element number " << counter << " is a parallelepiped with edges: ";
-                        out << tmp.myParallelepiped.heigth << ", ";
-                        out << tmp.myParallelepiped.width << ", ";
-                        out << tmp.myParallelepiped.depth << "\n";
-                        counter++;
-                    }
-                else if (tmp.key == Shape1::type::empty)
-                {
-                    out << "Element number " << i << " is empty\n";
-                    counter++;
-                }
-            }
-        }
-    }
-    out << "Total number of objects: " << counter << "\n";
+    cout << "Full - 0, no spheres - 1, no parallelepipeds - 2: ";
+    int limit = 0;
+    cin >> limit;
+    showContainer(cout, array, limit);
+    showContainer(out,array);
     return 0;
 }

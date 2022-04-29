@@ -40,3 +40,5 @@ Shape1 getElement(int hash, int place, HashArray1& myArray);
 int getSizeOfVector(int hash, HashArray1& myArray);
 // Return hash of element
 int makeHashOfShape(Shape1 shapeToHash);
+void showContainer(std::ostream& out, HashArray1 array);
+void showContainer(std::ostream& out, HashArray1 array, int limit);
