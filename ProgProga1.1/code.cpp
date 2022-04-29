@@ -65,3 +65,63 @@ int makeHashOfShape(Shape1 shapeToHash)
 	hash = hash % 30;
 	return hash;
 }
+
+bool sort(Shape1 a, Shape1 b)
+{
+	int aValue = 0;
+	int bValue = 0;
+	if (a.key == Shape1::type::round)
+		aValue = a.mySphere.getVolume();
+	else if (a.key == Shape1::type::square)
+		aValue = a.myParallelepiped.getVolume();
+	if (b.key == Shape1::type::round)
+		bValue = a.mySphere.getVolume();
+	else if (b.key == Shape1::type::square)
+		bValue = a.myParallelepiped.getVolume();
+	return aValue < bValue;
+}
+void sortElements(HashArray1& myArray)
+{
+	for (int i = 0; i < 30; i++)
+	{
+		std::sort(myArray.arrayOfVectorsOfElements[i].begin(), myArray.arrayOfVectorsOfElements[i].end(), sort);
+	}
+}
+void showContainer(std::ostream &out, HashArray1 array)
+{
+	int counter = 0;
+	for (int i = 0; i < 30; i++)
+	{
+		Shape1 tmp;
+		if (getSizeOfVector(i, array) != 0)
+		{
+			int size = getSizeOfVector(i, array);
+			for (int j = 0; j < size; j++)
+			{
+				tmp = getElement(i, j, array);
+				if (tmp.key == Shape1::type::round)
+				{
+					out << "Element number " << counter << " is a sphere with radius: ";
+					out << tmp.mySphere.radius << " ";
+					out << tmp.mySphere.getVolume() << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::square)
+				{
+					out << "Element number " << counter << " is a parallelepiped with edges: ";
+					out << tmp.myParallelepiped.heigth << ", ";
+					out << tmp.myParallelepiped.width << ", ";
+					out << tmp.myParallelepiped.depth << " ";
+					out	<< tmp.myParallelepiped.getVolume() << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::empty)
+				{
+					out << "Element number " << i << " is empty\n";
+					counter++;
+				}
+			}
+		}
+	}
+	out << "Total number of objects: " << counter << "\n";
+}

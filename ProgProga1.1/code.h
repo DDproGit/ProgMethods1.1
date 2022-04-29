@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 struct Shape1
 {
@@ -47,6 +48,8 @@ void removeElement(int hash, int place, HashArray1& myArray);
 void replaceElement(int hash, int place, Shape1 newShape, HashArray1& myArray);
 // Return element by hash and place
 Shape1 getElement(int hash, int place, HashArray1& myArray);
+void sortElements(HashArray1& myArray);
 int getSizeOfVector(int hash, HashArray1& myArray);
+void showContainer(std::ostream &out, HashArray1 array);
 // Return hash of element
 int makeHashOfShape(Shape1 shapeToHash);

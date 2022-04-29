@@ -44,8 +44,8 @@ int main(int argc, char* argv[])
                 tmp.mySphere.radius = radius;
                 myElement = addElement(tmp, array);
                 cout << "Element number " << i << ": ";
-                cout << tmp.mySphere.radius << ". That's a sphere.";
-                cout << tmp.mySphere.getVolume() << "\n";
+                cout << tmp.mySphere.radius << " " << tmp.mySphere.getVolume();
+                cout << ". That's a sphere." << "\n";
                 break;
             }
             case Shape1::type::square:
@@ -60,8 +60,8 @@ int main(int argc, char* argv[])
                 cout << "Element number " << i << ": ";
                 cout << tmp.myParallelepiped.heigth << ", ";
                 cout << tmp.myParallelepiped.width << ", ";
-                cout << tmp.myParallelepiped.depth << ". That's a parallelepiped.";
-                cout << tmp.myParallelepiped.getVolume() << "\n";
+                cout << tmp.myParallelepiped.depth << " " << tmp.myParallelepiped.getVolume() ;
+                cout << ". That's a parallelepiped." << "\n";
                 break;
             }
             case Shape1::type::empty:
@@ -77,38 +77,7 @@ int main(int argc, char* argv[])
             }
         }
     }
-    int counter = 0;
-    for (int i = 0; i < 30; i++)
-    {
-        Shape1 tmp;
-        if (getSizeOfVector(i, array) != 0)
-        {
-            int size = getSizeOfVector(i, array);
-            for (int j = 0; j < size; j++)
-            {
-                tmp = getElement(i, j, array);
-                if (tmp.key == Shape1::type::round)
-                {
-                    out << "Element number " << counter << " is a sphere with radius: ";
-                    out << tmp.mySphere.radius << "\n";
-                    counter++;
-                }
-                else if (tmp.key == Shape1::type::square)
-                    {
-                        out << "Element number " << counter << " is a parallelepiped with edges: ";
-                        out << tmp.myParallelepiped.heigth << ", ";
-                        out << tmp.myParallelepiped.width << ", ";
-                        out << tmp.myParallelepiped.depth << "\n";
-                        counter++;
-                    }
-                else if (tmp.key == Shape1::type::empty)
-                {
-                    out << "Element number " << i << " is empty\n";
-                    counter++;
-                }
-            }
-        }
-    }
-    out << "Total number of objects: " << counter << "\n";
+    sortElements(array);
+    showContainer(std::cout, array);
     return 0;
 }
