@@ -110,6 +110,7 @@ void showContainer(std::ostream &out, HashArray1 array)
 				{
 					out << "Element number " << counter << " is a sphere with radius: ";
 					out << tmp.mySphere.radius << " ";
+					out << tmp.mySphere.temperature << " ";
 					out << tmp.mySphere.getVolume() << "\n";
 					counter++;
 				}
@@ -119,43 +120,14 @@ void showContainer(std::ostream &out, HashArray1 array)
 					out << tmp.myParallelepiped.heigth << ", ";
 					out << tmp.myParallelepiped.width << ", ";
 					out << tmp.myParallelepiped.depth << " ";
+					out << tmp.myParallelepiped.temperature << " ";
 					out	<< tmp.myParallelepiped.getVolume() << "\n";
 					counter++;
 				}
-				else if (tmp.key == Shape1::type::empty)
+				else if (tmp.key == Shape1::type::tetra)
 				{
-					out << "Element number " << i << " is empty\n";
-					counter++;
-				}
-			}
-		}
-	}
-	out << "Total number of objects: " << counter << "\n";
-}
-void showContainer(std::ostream& out,HashArray1 array)
-{
-	int counter = 0;
-	for (int i = 0; i < 30; i++)
-	{
-		Shape1 tmp;
-		if (getSizeOfVector(i, array) != 0)
-		{
-			int size = getSizeOfVector(i, array);
-			for (int j = 0; j < size; j++)
-			{
-				tmp = getElement(i, j, array);
-				if (tmp.key == Shape1::type::round)
-				{
-					out << "Element number " << counter << " is a sphere with radius: ";
-					out << tmp.mySphere.radius << "\n";
-					counter++;
-				}
-				else if (tmp.key == Shape1::type::square)
-				{
-					out << "Element number " << counter << " is a parallelepiped with edges: ";
-					out << tmp.myParallelepiped.heigth << ", ";
-					out << tmp.myParallelepiped.width << ", ";
-					out << tmp.myParallelepiped.depth << "\n";
+					out << "Element number " << counter << " is a tetraedr with edge: ";
+					out << tmp.myTetraedr.edge << " " << tmp.myTetraedr.getVolume() <<"\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::empty)
@@ -188,7 +160,9 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 						continue;
 					}
 					out << "Element number " << counter << " is a sphere with radius: ";
-					out << tmp.mySphere.radius << "\n";
+					out << tmp.mySphere.radius << " ";
+					out << tmp.mySphere.temperature << " ";
+					out << tmp.mySphere.getVolume() << "\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::square)
@@ -201,7 +175,9 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 					out << "Element number " << counter << " is a parallelepiped with edges: ";
 					out << tmp.myParallelepiped.heigth << ", ";
 					out << tmp.myParallelepiped.width << ", ";
-					out << tmp.myParallelepiped.depth << "\n";
+					out << tmp.myParallelepiped.depth << " ";
+					out << tmp.myParallelepiped.temperature << " ";
+					out << tmp.myParallelepiped.getVolume() << "\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::tetra)
@@ -212,7 +188,7 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 						continue;
 					}
 					out << "Element number " << counter << " is a tetraedr with edge: ";
-					out << tmp.myTetraedr.edge << "\n";
+					out << tmp.myTetraedr.edge << " " << tmp.myTetraedr.getVolume() << "\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::empty)
