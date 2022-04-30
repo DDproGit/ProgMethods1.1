@@ -58,6 +58,7 @@ int getSizeOfVector(int hash, HashArray1& myArray)
 int makeHashOfShape(Shape1 shapeToHash)
 {
 	int hash = 0;
+	hash += shapeToHash.myTetraedr.edge * 27;
 	hash += shapeToHash.mySphere.radius * 23;
 	hash += shapeToHash.myParallelepiped.heigth * 17;
 	hash += shapeToHash.myParallelepiped.depth * 11;

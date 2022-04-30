@@ -4,7 +4,7 @@
 
 struct Shape1
 {
-	enum type { round, square, empty };
+	enum type { round, square, empty, tetra };
 	type key;
 	struct sphere
 	{
@@ -16,10 +16,15 @@ struct Shape1
 		int width;
 		int depth;
 	};
+	struct tetraedr
+	{
+		int edge;
+	};
 	union
 	{
 		sphere mySphere;
 		parallelepiped myParallelepiped;
+		tetraedr myTetraedr;
 	};
 };
 
