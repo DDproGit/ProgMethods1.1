@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
                 tmp.myTetraedr.edge = edge;
                 myElement = addElement(tmp, array);
                 cout << "Element number " << i << ": ";
-                cout << tmp.myTetraedr.edge <<" " << tmp.getValue() << ". That's a tetraedr.\n";
+                cout << tmp.myTetraedr.edge <<" " << tmp.myTetraedr.getVolume() << ". That's a tetraedr.\n";
                 break;
             }
         }
