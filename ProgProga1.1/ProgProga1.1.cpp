@@ -91,7 +91,10 @@ int main(int argc, char* argv[])
             }
         }
     }
-    sortElements(array);
-    showContainer(std::cout, array);
+    cout << "Full - 0, no spheres - 1, no parallelepipeds - 2, no tetras - 3: ";
+    int limit = 0;
+    cin >> limit;
+    showContainer(cout, array, limit);
+    showContainer(out,array);
     return 0;
 }

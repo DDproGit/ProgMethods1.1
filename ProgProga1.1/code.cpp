@@ -132,3 +132,86 @@ void showContainer(std::ostream &out, HashArray1 array)
 	}
 	out << "Total number of objects: " << counter << "\n";
 }
+}
+void showContainer(std::ostream& out,HashArray1 array)
+{
+	int counter = 0;
+	for (int i = 0; i < 30; i++)
+	{
+		Shape1 tmp;
+		if (getSizeOfVector(i, array) != 0)
+		{
+			int size = getSizeOfVector(i, array);
+			for (int j = 0; j < size; j++)
+			{
+				tmp = getElement(i, j, array);
+				if (tmp.key == Shape1::type::round)
+				{
+					out << "Element number " << counter << " is a sphere with radius: ";
+					out << tmp.mySphere.radius << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::square)
+				{
+					out << "Element number " << counter << " is a parallelepiped with edges: ";
+					out << tmp.myParallelepiped.heigth << ", ";
+					out << tmp.myParallelepiped.width << ", ";
+					out << tmp.myParallelepiped.depth << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::empty)
+				{
+					out << "Element number " << i << " is empty\n";
+					counter++;
+				}
+			}
+		}
+	}
+	out << "Total number of objects: " << counter << "\n";
+}
+void showContainer(std::ostream& out, HashArray1 array, int limit)
+{
+	int counter = 0;
+	for (int i = 0; i < 30; i++)
+	{
+		Shape1 tmp;
+		if (getSizeOfVector(i, array) != 0)
+		{
+			int size = getSizeOfVector(i, array);
+			for (int j = 0; j < size; j++)
+			{
+				tmp = getElement(i, j, array);
+				if (tmp.key == Shape1::type::round)
+				{
+					if (limit == 1)
+					{
+						counter++;
+						continue;
+					}
+					out << "Element number " << counter << " is a sphere with radius: ";
+					out << tmp.mySphere.radius << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::square)
+				{
+					if (limit == 2)
+					{
+						counter++;
+						continue;
+					}
+					out << "Element number " << counter << " is a parallelepiped with edges: ";
+					out << tmp.myParallelepiped.heigth << ", ";
+					out << tmp.myParallelepiped.width << ", ";
+					out << tmp.myParallelepiped.depth << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::empty)
+				{
+					out << "Element number " << i << " is empty\n";
+					counter++;
+				}
+			}
+		}
+	}
+	out << "Total number of objects: " << counter << "\n";
+}
