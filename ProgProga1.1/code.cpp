@@ -132,7 +132,6 @@ void showContainer(std::ostream &out, HashArray1 array)
 	}
 	out << "Total number of objects: " << counter << "\n";
 }
-}
 void showContainer(std::ostream& out,HashArray1 array)
 {
 	int counter = 0;
@@ -203,6 +202,17 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 					out << tmp.myParallelepiped.heigth << ", ";
 					out << tmp.myParallelepiped.width << ", ";
 					out << tmp.myParallelepiped.depth << "\n";
+					counter++;
+				}
+				else if (tmp.key == Shape1::type::tetra)
+				{
+					if (limit == 3)
+					{
+						counter++;
+						continue;
+					}
+					out << "Element number " << counter << " is a tetraedr with edge: ";
+					out << tmp.myTetraedr.edge << "\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::empty)
