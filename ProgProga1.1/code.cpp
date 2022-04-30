@@ -1,5 +1,11 @@
 #include "code.h"
-
+Shape1::Shape1()
+{
+	myParallelepiped.depth = 0;
+	myParallelepiped.heigth = 0;
+	myParallelepiped.temperature = 0;
+	myParallelepiped.width = 0;
+}
 // Adds element to array and return hash
 std::pair <int, int> addElement(Shape1 newElement, HashArray1& myArray)
 {

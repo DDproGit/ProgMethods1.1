@@ -2,17 +2,14 @@ Element number 0 is empty
 Element number 1 is a parallelepiped with edges: 8, 6, 92
 Element number 0 is empty
 Element number 0 is empty
-Element number 4 is a parallelepiped with edges: 13, 15, 2
-Element number 5 is a sphere with radius: 5
-Element number 6 is a tetraedr with edges: 5
-Element number 7 is a tetraedr with edges: 14
-Element number 8 is a tetraedr with edges: 2
-Element number 9 is a parallelepiped with edges: 7, 5, 5
-Element number 10 is a parallelepiped with edges: 4, 5, 7
-Element number 11 is a sphere with radius: 11
-Element number 12 is a sphere with radius: 7
-Element number 13 is a tetraedr with edges: 7
-Element number 14 is a parallelepiped with edges: 9, 61, 4
-Element number 15 is a parallelepiped with edges: 12, 4, 3
-Element number 16 is a sphere with radius: 3
-Total number of objects: 17
+Element number 3 is a parallelepiped with edges: 12, 4, 3 and temperature:12
+Element number 4 is a parallelepiped with edges: 4, 5, 7 and temperature:2
+Element number 5 is a sphere with radius: 5  and temperature: 32
+Element number 6 is a parallelepiped with edges: 7, 5, 5 and temperature:423
+Element number 7 is a parallelepiped with edges: 13, 15, 2 and temperature:325
+Element number 8 is a sphere with radius: 7  and temperature: 23
+Element number 9 is a parallelepiped with edges: 9, 61, 4 and temperature:4
+Element number 10 is a sphere with radius: 11  and temperature: 9
+Element number 11 is a parallelepiped with edges: 8, 6, 92 and temperature:1
+Element number 12 is a sphere with radius: 3  and temperature: 8
+Total number of objects: 13

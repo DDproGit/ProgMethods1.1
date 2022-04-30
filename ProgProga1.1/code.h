@@ -9,12 +9,14 @@ struct Shape1
 	struct sphere
 	{
 		int radius;
+		int temperature;
 	};
 	struct parallelepiped
 	{
 		int heigth;
 		int width;
 		int depth;
+		int temperature;
 	};
 	struct tetraedr
 	{
@@ -26,6 +28,7 @@ struct Shape1
 		parallelepiped myParallelepiped;
 		tetraedr myTetraedr;
 	};
+	Shape1();
 };
 
 
