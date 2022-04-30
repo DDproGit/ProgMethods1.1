@@ -91,47 +91,7 @@ int main(int argc, char* argv[])
             }
         }
     }
-    int counter = 0;
-    for (int i = 0; i < 30; i++)
-    {
-        Shape1 tmp;
-        if (getSizeOfVector(i, array) != 0)
-        {
-            int size = getSizeOfVector(i, array);
-            for (int j = 0; j < size; j++)
-            {
-                tmp = getElement(i, j, array);
-                if (tmp.key == Shape1::type::round)
-                {
-                    out << "Element number " << counter << " is a sphere with radius: ";
-                    out << tmp.mySphere.radius << " ";
-                    out << " and temperature: ";
-                    out << tmp.mySphere.temperature << "\n";
-                    counter++;
-                }
-                else if (tmp.key == Shape1::type::square)
-                    {
-                        out << "Element number " << counter << " is a parallelepiped with edges: ";
-                        out << tmp.myParallelepiped.heigth << ", ";
-                        out << tmp.myParallelepiped.width << ", ";
-                        out << tmp.myParallelepiped.depth << " and temperature:";
-                        out << tmp.myParallelepiped.temperature << "\n";
-                        counter++;
-                    }
-                else if (tmp.key == Shape1::type::empty)
-                {
-                    out << "Element number " << i << " is empty\n";
-                    counter++;
-                }
-                else if (tmp.key == Shape1::type::tetra)
-                {
-                    out << "Element number " << counter << " is a tetraedr with edges: ";
-                    out << tmp.myTetraedr.edge<< "\n";
-                    counter++;
-                }
-            }
-        }
-    }
-    out << "Total number of objects: " << counter << "\n";
+    sortElements(array);
+    showContainer(std::cout, array);
     return 0;
 }
