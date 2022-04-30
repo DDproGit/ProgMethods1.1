@@ -8,18 +8,32 @@ struct Shape1
 	type key;
 	struct sphere
 	{
+	public:
 		int radius;
 		int temperature;
+		int getVolume()
+		{
+			return 4 / 3 * 3.14 * radius * radius * radius;
+		}
 	};
 	struct parallelepiped
 	{
+	public:
 		int heigth;
 		int width;
 		int depth;
 		int temperature;
+		int getVolume()
+		{
+			return heigth * width * depth;
+		}
 	};
 	struct tetraedr
 	{
+		int getVolume()
+		{
+			return (pow(edge,3)*sqrt(2)/12);
+		}
 		int edge;
 	};
 	union

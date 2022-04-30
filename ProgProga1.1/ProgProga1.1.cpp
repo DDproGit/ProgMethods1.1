@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
                 myElement = addElement(tmp, array);
                 cout << "Element number " << i << ": ";
                 cout << tmp.mySphere.radius << ", ";
-                cout << tmp.mySphere.temperature << ". That's a sphere.\n";
+                cout << tmp.mySphere.getVolume() << " " << tmp.mySphere.temperature << ". That's a sphere.\n";
                 break;
             }
             case Shape1::type::square:
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
                 cout << tmp.myParallelepiped.heigth << ", ";
                 cout << tmp.myParallelepiped.width << ", ";
                 cout << tmp.myParallelepiped.depth << ", ";
-                cout << tmp.myParallelepiped.temperature << ". That's a parallelepiped.\n";
+                cout << tmp.myParallelepiped.getVolume() << " " << tmp.myParallelepiped.temperature << ". That's a parallelepiped.\n";
                 break;
             }
             case Shape1::type::empty:
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
                 tmp.myTetraedr.edge = edge;
                 myElement = addElement(tmp, array);
                 cout << "Element number " << i << ": ";
-                cout << tmp.myTetraedr.edge << ". That's a tetraedr.\n";
+                cout << tmp.myTetraedr.edge <<" " << tmp.getValue() << ". That's a tetraedr.\n";
                 break;
             }
         }
