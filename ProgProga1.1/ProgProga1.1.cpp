@@ -17,12 +17,20 @@ int main(int argc, char* argv[])
     ofstream out;
     if (argc != 3)
     {
-        cout << "Input file name \n";
-        cin >> filename;
-        in.open(filename);
-        cout << "Output file name \n";
-        cin >> filename;
-        out.open(filename);
+        while (in.is_open() != true)
+        {
+            cout << "Input file name \n";
+            cin >> filename;
+            in.open(filename);
+            cout << "Input file can't be opened";            
+        }
+        while (out.is_open() != true)
+        {
+            cout << "Output file name \n";
+            cin >> filename;
+            out.open(filename);
+            cout << "Output file can't be opened";
+        }
     }
     else
     {
@@ -30,11 +38,33 @@ int main(int argc, char* argv[])
         in.open(filename);
         filename = argv[2];
         out.open(filename);
+        while (in.is_open() != true)
+        {
+            cout << "Input file name \n";
+            cin >> filename;
+            in.open(filename);
+            cout << "Input file can't be opened";
+        }
+        while (out.is_open() != true)
+        {
+            cout << "Output file name \n";
+            cin >> filename;
+            out.open(filename);
+            cout << "Output file can't be opened";
+        }
     }
-    int n = 0;
-    in >> n;
     std::string tmpstr;
     std::getline(in, tmpstr);
+    int n = 0;
+    try
+    {
+        n = stoi(tmpstr);
+    }
+    catch (...)
+    {
+        cout << "Invalid number of elements";
+        exit(0);
+    }
     for (int i = 0; i < n; i++)
     {
         int type, radius, heigth, width, depth, temperature, edge = 0;
@@ -46,16 +76,34 @@ int main(int argc, char* argv[])
         split_vector.erase(
             std::remove_if(split_vector.begin(), split_vector.end(),
                 [](std::string const& s) { return s.size() == 0; }), split_vector.end());
-        switch(stoi(split_vector[0]))
+        int caser = 0;
+        try
+        {
+            caser = stoi(split_vector[0]);
+        }
+        catch (...)
+        {
+            cout << "Invalid type of element in line " << i + 2 << endl;;
+            exit(0);
+        }
+        switch(caser)
         {
             case Shape1::type::round:
             {
                 if (split_vector.size() == 4)
                 {
                     Shape1 tmp;
-                    density = stof(split_vector[1]);
-                    temperature = stoi(split_vector[2]);
-                    radius = stoi(split_vector[3]);
+                    try
+                    {
+                        density = stof(split_vector[1]);
+                        temperature = stoi(split_vector[2]);
+                        radius = stoi(split_vector[3]);
+                    }
+                    catch (...)
+                    {
+                        cout << "Invalid arguments in line " << i + 2 << endl;
+                        exit(0);
+                    }
                     tmp.key = Shape1::type::round;
                     tmp.mySphere.radius = radius;
                     tmp.mySphere.temperature = temperature;
@@ -78,11 +126,19 @@ int main(int argc, char* argv[])
                 if (split_vector.size() == 6)
                 {
                     Shape1 tmp;
-                    density = stof(split_vector[1]);
-                    temperature = stoi(split_vector[2]);
-                    heigth = stoi(split_vector[3]);
-                    width = stoi(split_vector[4]);
-                    depth = stoi(split_vector[5]);
+                    try
+                    {
+                        density = stof(split_vector[1]);
+                        temperature = stoi(split_vector[2]);
+                        heigth = stoi(split_vector[3]);
+                        width = stoi(split_vector[4]);
+                        depth = stoi(split_vector[5]);
+                    }
+                    catch (...)
+                    {
+                        cout << "Invalid arguments in line " << i + 2 << endl;
+                        exit(0);
+                    }
                     tmp.key = Shape1::type::square;
                     tmp.myParallelepiped.heigth = heigth;
                     tmp.myParallelepiped.width = width;
@@ -109,9 +165,17 @@ int main(int argc, char* argv[])
                 if (split_vector.size() == 4)
                 {
                     Shape1 tmp;
-                    density = stof(split_vector[1]);
-                    temperature = stoi(split_vector[2]);
-                    heigth = stoi(split_vector[3]);
+                    try
+                    {
+                        density = stof(split_vector[1]);
+                        temperature = stoi(split_vector[2]);
+                        heigth = stoi(split_vector[3]);
+                    }
+                    catch (...)
+                    {
+                        cout << "Invalid arguments in line " << i + 2 << endl;
+                        exit(0);
+                    }
                     tmp.key = Shape1::type::tetra;
                     tmp.myTetraedr.edge = edge;
                     tmp.myTetraedr.temperature = temperature;
