@@ -5,14 +5,15 @@
 
 struct Shape1
 {
-	enum type { round, square, empty, tetra };
+	enum type { round, square, tetra, empty};
 	type key;
 	struct sphere
 	{
 	public:
 		int radius;
+		float density;
 		int temperature;
-		int getVolume()
+		float getVolume()
 		{
 			return 4 / 3 * 3.14 * radius * radius * radius;
 		}
@@ -23,19 +24,22 @@ struct Shape1
 		int heigth;
 		int width;
 		int depth;
+		float density;
 		int temperature;
-		int getVolume()
+		float getVolume()
 		{
 			return heigth * width * depth;
 		}
 	};
 	struct tetraedr
 	{
-		int getVolume()
-		{
-			return (pow(edge,3)*sqrt(2)/12);
-		}
 		int edge;
+		float density;
+		int temperature;
+		float getVolume()
+		{
+			return (pow(edge, 3) * 1.41 / 12);
+		}
 	};
 	union
 	{

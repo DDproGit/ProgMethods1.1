@@ -1,8 +1,10 @@
 #include "code.h"
 Shape1::Shape1()
 {
+	key = empty;
 	myParallelepiped.depth = 0;
 	myParallelepiped.heigth = 0;
+	myParallelepiped.density = 0.00;
 	myParallelepiped.temperature = 0;
 	myParallelepiped.width = 0;
 }
@@ -64,11 +66,16 @@ int getSizeOfVector(int hash, HashArray1& myArray)
 int makeHashOfShape(Shape1 shapeToHash)
 {
 	int hash = 0;
-	hash += shapeToHash.myTetraedr.edge * 27;
-	hash += shapeToHash.mySphere.radius * 23;
-	hash += shapeToHash.myParallelepiped.heigth * 17;
-	hash += shapeToHash.myParallelepiped.depth * 11;
-	hash += shapeToHash.myParallelepiped.width * 7;
+	if (shapeToHash.key == Shape1::type::tetra)
+		hash += shapeToHash.myTetraedr.edge * 27;
+	if (shapeToHash.key == Shape1::type::round)
+		hash += shapeToHash.mySphere.radius * 23;
+	if (shapeToHash.key == Shape1::type::square)
+	{
+		hash += shapeToHash.myParallelepiped.heigth * 17;
+		hash += shapeToHash.myParallelepiped.depth * 11;
+		hash += shapeToHash.myParallelepiped.width * 7;
+	}
 	hash = hash % 30;
 	return hash;
 }
@@ -94,7 +101,7 @@ void sortElements(HashArray1& myArray)
 		std::sort(myArray.arrayOfVectorsOfElements[i].begin(), myArray.arrayOfVectorsOfElements[i].end(), sort);
 	}
 }
-void showContainer(std::ostream &out, HashArray1 array)
+void showContainer(std::ostream& out, HashArray1 array)
 {
 	int counter = 0;
 	for (int i = 0; i < 30; i++)
@@ -109,8 +116,9 @@ void showContainer(std::ostream &out, HashArray1 array)
 				if (tmp.key == Shape1::type::round)
 				{
 					out << "Element number " << counter << " is a sphere with radius: ";
-					out << tmp.mySphere.radius << " ";
-					out << tmp.mySphere.temperature << " ";
+					out << tmp.mySphere.radius << ", temperature ";
+					out << tmp.mySphere.temperature << ", density ";
+					out << tmp.mySphere.density << ", volume ";
 					out << tmp.mySphere.getVolume() << "\n";
 					counter++;
 				}
@@ -119,16 +127,19 @@ void showContainer(std::ostream &out, HashArray1 array)
 					out << "Element number " << counter << " is a parallelepiped with edges: ";
 					out << tmp.myParallelepiped.heigth << ", ";
 					out << tmp.myParallelepiped.width << ", ";
-					out << tmp.myParallelepiped.depth << " ";
-					out << tmp.myParallelepiped.temperature << " ";
-					out	<< tmp.myParallelepiped.getVolume() << "\n";
+					out << tmp.myParallelepiped.depth << ", temperature ";
+					out << tmp.myParallelepiped.temperature << ", density ";
+					out << tmp.myParallelepiped.density << ", volume ";
+					out << tmp.myParallelepiped.getVolume() << "\n";
 					counter++;
 				}
 				else if (tmp.key == Shape1::type::tetra)
 				{
 					out << "Element number " << counter << " is a tetraedr with edge: ";
-					out << tmp.myTetraedr.edge << " " << tmp.myTetraedr.getVolume() <<"\n";
-					counter++;
+					out << tmp.myTetraedr.edge << ", temperature ";
+					out << tmp.myTetraedr.temperature << ", density ";
+					out << tmp.myTetraedr.density << ", volume ";
+					out << tmp.myTetraedr.getVolume() << "\n";
 				}
 				else if (tmp.key == Shape1::type::empty)
 				{
@@ -160,8 +171,9 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 						continue;
 					}
 					out << "Element number " << counter << " is a sphere with radius: ";
-					out << tmp.mySphere.radius << " ";
-					out << tmp.mySphere.temperature << " ";
+					out << tmp.mySphere.radius << ", temperature ";
+					out << tmp.mySphere.temperature << ", density ";
+					out << tmp.mySphere.density << ", volume ";
 					out << tmp.mySphere.getVolume() << "\n";
 					counter++;
 				}
@@ -175,8 +187,9 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 					out << "Element number " << counter << " is a parallelepiped with edges: ";
 					out << tmp.myParallelepiped.heigth << ", ";
 					out << tmp.myParallelepiped.width << ", ";
-					out << tmp.myParallelepiped.depth << " ";
-					out << tmp.myParallelepiped.temperature << " ";
+					out << tmp.myParallelepiped.depth << ", temperature ";
+					out << tmp.myParallelepiped.temperature << ", density ";
+					out << tmp.myParallelepiped.density << ", volume ";
 					out << tmp.myParallelepiped.getVolume() << "\n";
 					counter++;
 				}
@@ -188,8 +201,10 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 						continue;
 					}
 					out << "Element number " << counter << " is a tetraedr with edge: ";
-					out << tmp.myTetraedr.edge << " " << tmp.myTetraedr.getVolume() << "\n";
-					counter++;
+					out << tmp.myTetraedr.edge << ", temperature ";
+					out << tmp.myTetraedr.temperature << ", density ";
+					out << tmp.myTetraedr.density << ", volume ";
+					out << tmp.myTetraedr.getVolume() << "\n";
 				}
 				else if (tmp.key == Shape1::type::empty)
 				{
