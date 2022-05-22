@@ -69,6 +69,13 @@ int main(int argc, char* argv[])
     {
         int type, radius, heigth, width, depth, temperature, edge = 0;
         float density = 0.00;
+
+        if (in.eof())
+        {
+            std::cout << "There are less shapes than stated! Exiting programm..." << std::endl;
+            exit(0);
+        }
+
         std::string inputline;
         std::getline(in, inputline);
         std::vector<std::string> split_vector;
@@ -169,7 +176,7 @@ int main(int argc, char* argv[])
                     {
                         density = stof(split_vector[1]);
                         temperature = stoi(split_vector[2]);
-                        heigth = stoi(split_vector[3]);
+                        edge = stoi(split_vector[3]);
                     }
                     catch (...)
                     {
@@ -213,10 +220,24 @@ int main(int argc, char* argv[])
             }
         }
     }
+    if (!in.eof())
+    {
+        std::cout << "Something is wrong, eof isn't reached! Exiting programm..." << std::endl;/////////////////////////////////////////////////////////////////////////////////////
+        exit(0);
+    }
     std::cout << "Full - 0, no spheres - 1, no parallelepipeds - 2, no tetras - 3: ";
     int limit = 0;
     cin >> limit;
+
+    while (limit < 0 || limit > 3) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        std::cout << "Incorrect limiter is set! Try again!" << std::endl;
+        std::cin >> limit;
+    }
+
     showContainer(cout, array, limit);
     showContainer(out,array);
+    sortElements(array);
+    showContainer(cout, array, limit);
     return 0;
 }

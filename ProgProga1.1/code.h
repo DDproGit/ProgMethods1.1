@@ -15,7 +15,8 @@ struct Shape1
 		int temperature;
 		float getVolume()
 		{
-			return 4 / 3 * 3.14 * radius * radius * radius;
+			//return 4 / 3 * 3.14 * radius * radius * radius;
+			return 4 / 3 * 3.14 * radius;
 		}
 	};
 	struct parallelepiped
@@ -38,7 +39,7 @@ struct Shape1
 		int temperature;
 		float getVolume()
 		{
-			return (pow(edge, 3) * 1.41 / 12);
+			return ((pow(edge, 3) * sqrt(2)) / 12);
 		}
 	};
 	union

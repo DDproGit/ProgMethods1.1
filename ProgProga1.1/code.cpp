@@ -82,23 +82,69 @@ int makeHashOfShape(Shape1 shapeToHash)
 
 bool sort(Shape1 a, Shape1 b)
 {
-	int aValue = 0;
-	int bValue = 0;
+	float aValue = 0;
+	float bValue = 0;
 	if (a.key == Shape1::type::round)
 		aValue = a.mySphere.getVolume();
 	else if (a.key == Shape1::type::square)
 		aValue = a.myParallelepiped.getVolume();
+	else if (a.key == Shape1::type::tetra)
+		aValue = a.myTetraedr.getVolume();
 	if (b.key == Shape1::type::round)
-		bValue = a.mySphere.getVolume();
+		bValue = b.mySphere.getVolume();
 	else if (b.key == Shape1::type::square)
-		bValue = a.myParallelepiped.getVolume();
+		bValue = b.myParallelepiped.getVolume();
+	else if (b.key == Shape1::type::tetra)
+		bValue = b.myTetraedr.getVolume();
 	return aValue < bValue;
 }
 void sortElements(HashArray1& myArray)
 {
-	for (int i = 0; i < 30; i++)
+	/*for (int i = 0; i < 30; i++)
 	{
 		std::sort(myArray.arrayOfVectorsOfElements[i].begin(), myArray.arrayOfVectorsOfElements[i].end(), sort);
+	}*/
+	std::vector<Shape1> vec;
+	for (int i = 0; i < 30; i++)
+	{
+		if (getSizeOfVector(i, myArray) != 0)
+		{
+			int size = getSizeOfVector(i, myArray);
+			for (int j = 0; j < size; j++)
+			{
+				Shape1 tmp = getElement(i, j, myArray);
+				vec.push_back(tmp);
+			}
+		}
+	}
+	for (int i = 0; i < vec.size() - 1; i++)
+	{
+		for (int j = i + 1; j < vec.size(); j++)
+		{
+			if (sort(vec[i], vec[j]))
+			{
+				Shape1 tmp = vec[i];
+				vec[i] = vec[j];
+				vec[j] = tmp;
+			}
+		}
+	}
+	int pointer = 0;
+	for (int i = 0; i < 30; i++)
+	{
+		if (getSizeOfVector(i, myArray) != 0)
+		{
+			int size = getSizeOfVector(i, myArray);
+			for (int j = 0; j < size; j++)
+			{ //void replaceElement(int hash, int place, Shape1 newShape, HashArray1& myArray)
+				replaceElement(i, j, vec[pointer], myArray);
+				//this->replaceShape(i, j, vec[pointer]);
+				//Shape1* tmp = &(getElement(i, j, myArray));
+				//tmp = &(vec[pointer]);
+				//myArray[i][j] = vec[pointer];
+				++pointer;
+			}
+		}
 	}
 }
 void showContainer(std::ostream& out, HashArray1 array)
@@ -140,6 +186,7 @@ void showContainer(std::ostream& out, HashArray1 array)
 					out << tmp.myTetraedr.temperature << ", density ";
 					out << tmp.myTetraedr.density << ", volume ";
 					out << tmp.myTetraedr.getVolume() << "\n";
+					counter++;
 				}
 				else if (tmp.key == Shape1::type::empty)
 				{
@@ -205,6 +252,7 @@ void showContainer(std::ostream& out, HashArray1 array, int limit)
 					out << tmp.myTetraedr.temperature << ", density ";
 					out << tmp.myTetraedr.density << ", volume ";
 					out << tmp.myTetraedr.getVolume() << "\n";
+					counter++;
 				}
 				else if (tmp.key == Shape1::type::empty)
 				{
