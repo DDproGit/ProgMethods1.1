@@ -7,7 +7,7 @@ struct Shape1
 {
 	enum type { round, square, tetra, empty};
 	type key;
-	struct sphere
+	struct Sphere
 	{
 	public:
 		int radius;
@@ -19,7 +19,7 @@ struct Shape1
 			return 4 / 3 * 3.14 * radius;
 		}
 	};
-	struct parallelepiped
+	struct Parallelepiped
 	{
 	public:
 		int heigth;
@@ -32,7 +32,7 @@ struct Shape1
 			return heigth * width * depth;
 		}
 	};
-	struct tetraedr
+	struct Tetraedr
 	{
 		int edge;
 		float density;
@@ -44,9 +44,9 @@ struct Shape1
 	};
 	union
 	{
-		sphere mySphere;
-		parallelepiped myParallelepiped;
-		tetraedr myTetraedr;
+		Sphere mySphere;
+		Parallelepiped myParallelepiped;
+		Tetraedr myTetraedr;
 	};
 	Shape1();
 };

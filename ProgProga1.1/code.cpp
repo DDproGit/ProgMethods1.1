@@ -100,51 +100,9 @@ bool sort(Shape1 a, Shape1 b)
 }
 void sortElements(HashArray1& myArray)
 {
-	/*for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		std::sort(myArray.arrayOfVectorsOfElements[i].begin(), myArray.arrayOfVectorsOfElements[i].end(), sort);
-	}*/
-	std::vector<Shape1> vec;
-	for (int i = 0; i < 30; i++)
-	{
-		if (getSizeOfVector(i, myArray) != 0)
-		{
-			int size = getSizeOfVector(i, myArray);
-			for (int j = 0; j < size; j++)
-			{
-				Shape1 tmp = getElement(i, j, myArray);
-				vec.push_back(tmp);
-			}
-		}
-	}
-	for (int i = 0; i < vec.size() - 1; i++)
-	{
-		for (int j = i + 1; j < vec.size(); j++)
-		{
-			if (sort(vec[i], vec[j]))
-			{
-				Shape1 tmp = vec[i];
-				vec[i] = vec[j];
-				vec[j] = tmp;
-			}
-		}
-	}
-	int pointer = 0;
-	for (int i = 0; i < 30; i++)
-	{
-		if (getSizeOfVector(i, myArray) != 0)
-		{
-			int size = getSizeOfVector(i, myArray);
-			for (int j = 0; j < size; j++)
-			{ //void replaceElement(int hash, int place, Shape1 newShape, HashArray1& myArray)
-				replaceElement(i, j, vec[pointer], myArray);
-				//this->replaceShape(i, j, vec[pointer]);
-				//Shape1* tmp = &(getElement(i, j, myArray));
-				//tmp = &(vec[pointer]);
-				//myArray[i][j] = vec[pointer];
-				++pointer;
-			}
-		}
 	}
 }
 void showContainer(std::ostream& out, HashArray1 array)

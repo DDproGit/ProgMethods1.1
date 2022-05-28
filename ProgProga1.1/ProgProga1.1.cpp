@@ -222,14 +222,14 @@ int main(int argc, char* argv[])
     }
     if (!in.eof())
     {
-        std::cout << "Something is wrong, eof isn't reached! Exiting programm..." << std::endl;/////////////////////////////////////////////////////////////////////////////////////
+        std::cout << "Something is wrong, eof isn't reached! Exiting programm..." << std::endl;
         exit(0);
     }
     std::cout << "Full - 0, no spheres - 1, no parallelepipeds - 2, no tetras - 3: ";
     int limit = 0;
     cin >> limit;
 
-    while (limit < 0 || limit > 3) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    while (limit < 0 || limit > 3)
     {
         std::cout << "Incorrect limiter is set! Try again!" << std::endl;
         std::cin >> limit;
