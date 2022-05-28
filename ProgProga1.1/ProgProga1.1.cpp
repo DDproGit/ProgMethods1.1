@@ -71,15 +71,16 @@ int main(int argc, char* argv[])
         float density = 0.00;
         std::string inputline;
         std::getline(in, inputline);
-        std::vector<std::string> split_vector;
-        boost::split(split_vector, inputline, boost::is_any_of(" "), boost::token_compress_on);
-        split_vector.erase(
-            std::remove_if(split_vector.begin(), split_vector.end(),
-                [](std::string const& s) { return s.size() == 0; }), split_vector.end());
+        std::vector<std::string> splitVector;
+        boost::split(splitVector, inputline, boost::is_any_of(" "), boost::token_compress_on);
+        splitVector.erase(
+            std::remove_if(splitVector.begin(), splitVector.end(),
+                [](std::string const& s) { return s.size() == 0; }), splitVector.end());
         int caser = 0;
         try
         {
-            caser = stoi(split_vector[0]);
+            if (splitVector.size() > 0)
+                caser = stoi(splitVector[0]);
         }
         catch (...)
         {
@@ -88,23 +89,23 @@ int main(int argc, char* argv[])
         }
         switch(caser)
         {
-            case Shape1::type::round:
+            case Shape::type::round:
             {
-                if (split_vector.size() == 4)
+                if (splitVector.size() == 4)
                 {
-                    Shape1 tmp;
+                    Shape tmp;
                     try
                     {
-                        density = stof(split_vector[1]);
-                        temperature = stoi(split_vector[2]);
-                        radius = stoi(split_vector[3]);
+                        density = stof(splitVector[1]);
+                        temperature = stoi(splitVector[2]);
+                        radius = stoi(splitVector[3]);
                     }
                     catch (...)
                     {
                         cout << "Invalid arguments in line " << i + 2 << endl;
                         exit(0);
                     }
-                    tmp.key = Shape1::type::round;
+                    tmp.key = Shape::type::round;
                     tmp.mySphere.radius = radius;
                     tmp.mySphere.temperature = temperature;
                     tmp.mySphere.density = density;
@@ -121,25 +122,25 @@ int main(int argc, char* argv[])
                 }
                 break;
             }
-            case Shape1::type::square:
+            case Shape::type::square:
             {
-                if (split_vector.size() == 6)
+                if (splitVector.size() == 6)
                 {
-                    Shape1 tmp;
+                    Shape tmp;
                     try
                     {
-                        density = stof(split_vector[1]);
-                        temperature = stoi(split_vector[2]);
-                        heigth = stoi(split_vector[3]);
-                        width = stoi(split_vector[4]);
-                        depth = stoi(split_vector[5]);
+                        density = stof(splitVector[1]);
+                        temperature = stoi(splitVector[2]);
+                        heigth = stoi(splitVector[3]);
+                        width = stoi(splitVector[4]);
+                        depth = stoi(splitVector[5]);
                     }
                     catch (...)
                     {
                         cout << "Invalid arguments in line " << i + 2 << endl;
                         exit(0);
                     }
-                    tmp.key = Shape1::type::square;
+                    tmp.key = Shape::type::square;
                     tmp.myParallelepiped.heigth = heigth;
                     tmp.myParallelepiped.width = width;
                     tmp.myParallelepiped.depth = depth;
@@ -160,23 +161,23 @@ int main(int argc, char* argv[])
                 }
                 break;
             }
-            case Shape1::type::tetra:
+            case Shape::type::tetra:
             {
-                if (split_vector.size() == 4)
+                if (splitVector.size() == 4)
                 {
-                    Shape1 tmp;
+                    Shape tmp;
                     try
                     {
-                        density = stof(split_vector[1]);
-                        temperature = stoi(split_vector[2]);
-                        heigth = stoi(split_vector[3]);
+                        density = stof(splitVector[1]);
+                        temperature = stoi(splitVector[2]);
+                        heigth = stoi(splitVector[3]);
                     }
                     catch (...)
                     {
                         cout << "Invalid arguments in line " << i + 2 << endl;
                         exit(0);
                     }
-                    tmp.key = Shape1::type::tetra;
+                    tmp.key = Shape::type::tetra;
                     tmp.myTetraedr.edge = edge;
                     tmp.myTetraedr.temperature = temperature;
                     tmp.myTetraedr.density = density;
@@ -193,11 +194,11 @@ int main(int argc, char* argv[])
                 }
                 break;
             }
-            case Shape1::type::empty:
+            case Shape::type::empty:
             {
-                Shape1 tmp;
+                Shape tmp;
                 std::cout << "Element number " << i << " is empty\n";
-                tmp.key = Shape1::type::empty;
+                tmp.key = Shape::type::empty;
                 tmp.myParallelepiped.heigth = 0;
                 tmp.myParallelepiped.width = 0;
                 tmp.myParallelepiped.depth = 0;

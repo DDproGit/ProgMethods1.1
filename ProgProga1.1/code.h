@@ -3,11 +3,11 @@
 #include <iostream>
 #include <algorithm>
 
-struct Shape1
+struct Shape
 {
 	enum type { round, square, tetra, empty};
 	type key;
-	struct sphere
+	struct Sphere
 	{
 	public:
 		int radius;
@@ -18,7 +18,7 @@ struct Shape1
 			return 4 / 3 * 3.14 * radius * radius * radius;
 		}
 	};
-	struct parallelepiped
+	struct Parallelepiped
 	{
 	public:
 		int heigth;
@@ -31,7 +31,7 @@ struct Shape1
 			return heigth * width * depth;
 		}
 	};
-	struct tetraedr
+	struct Tetraedr
 	{
 		int edge;
 		float density;
@@ -43,31 +43,31 @@ struct Shape1
 	};
 	union
 	{
-		sphere mySphere;
-		parallelepiped myParallelepiped;
-		tetraedr myTetraedr;
+		Sphere mySphere;
+		Parallelepiped myParallelepiped;
+		Tetraedr myTetraedr;
 	};
-	Shape1();
+	Shape();
 };
 
 
 struct HashArray1
 {
-	std::vector<Shape1> arrayOfVectorsOfElements[30];
+	std::vector<Shape> arrayOfVectorsOfElements[30];
 };
 
 // Adds element to array and return hash and place
-std::pair <int, int> addElement(Shape1 newElement, HashArray1& myArray);
+std::pair <int, int> addElement(Shape newElement, HashArray1& myArray);
 // Delete element from array by hash and place
 void removeElement(int hash, int place, HashArray1& myArray);
 // Replace element with this hash and place with new 
-void replaceElement(int hash, int place, Shape1 newShape, HashArray1& myArray);
+void replaceElement(int hash, int place, Shape newShape, HashArray1& myArray);
 // Return element by hash and place
-Shape1 getElement(int hash, int place, HashArray1& myArray);
+Shape getElement(int hash, int place, HashArray1& myArray);
 void sortElements(HashArray1& myArray);
 int getSizeOfVector(int hash, HashArray1& myArray);
 void showContainer(std::ostream &out, HashArray1 array);
 // Return hash of element
-int makeHashOfShape(Shape1 shapeToHash);
+int makeHashOfShape(Shape shapeToHash);
 void showContainer(std::ostream& out, HashArray1 array);
 void showContainer(std::ostream& out, HashArray1 array, int limit);
